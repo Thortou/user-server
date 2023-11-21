@@ -14,10 +14,10 @@ export class UserService {
     ) { }
 
     async create(createUserDto: CreateUserDto): Promise<any> {
-        const user = new UserEntity()
-        user.username = createUserDto.username,
-            user.password = await bcrypt.hash(createUserDto.password, 10),
-            user.tel = createUserDto.tel
+        const user = new UserEntity();
+        user.username = createUserDto.username;
+        user.password = await bcrypt.hash(createUserDto.password, 10);
+        user.tel = createUserDto.tel;
 
         if (createUserDto.password !== createUserDto.comfirm_pass) throw new NotFoundException('comfirm wrong!!!')
 
