@@ -19,7 +19,9 @@ export class UserService {
         user.password = await bcrypt.hash(createUserDto.password, 10);
         user.tel = createUserDto.tel;
 
-        if (createUserDto.password !== createUserDto.comfirm_pass) throw new NotFoundException('comfirm wrong!!!')
+        if (createUserDto.password !== createUserDto.comfirm_pass) {
+            throw new NotFoundException('comfirm wrong!!!')
+        }
 
         return await this._dataSource.getRepository(UserEntity).save(user)
     }
